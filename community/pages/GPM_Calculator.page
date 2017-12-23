@@ -1,0 +1,161 @@
+<apex:page controller="GPM_Calculator_Controller" showHeader="false">
+    <script type="text/javascript">
+        
+        //initial values set
+        var BWRPRA = 0;  var HWPD = 0;  var WSCH = 0;  var MIWPD = 0;  var HPWC = 0;
+        var TPDPC = 0; var CLW = 0;  var A = 0; var RC = 0;  var RB = 0; var BB = 0;
+        var CB = 0; var BWRBR = 0;  var VMF = 0; var M1 = 0; var M2 = 0; var MF = 0;
+        
+        //set vars to new value on change of value
+        function setVars(newChange,inputType){
+            if(inputType == 'BWRPRA'){BWRPRA = newChange;}
+            if(inputType == 'HWPD'){HWPD = newChange;}
+            if(inputType == 'WSCH'){WSCH = newChange;}
+            if(inputType == 'MIWPD'){MIWPD = newChange;}
+            if(inputType == 'HPWC'){HPWC = newChange;}
+            if(inputType == 'TPDPC'){TPDPC = newChange;}
+            if(inputType == 'CLW'){CLW = newChange;}
+            if(inputType == 'A'){A = newChange;}
+            if(inputType == 'RC'){RC = newChange;}
+            if(inputType == 'RB'){RB = newChange;}
+            if(inputType == 'BB'){BB = newChange;}
+            if(inputType == 'CB'){CB = newChange;}
+            if(inputType == 'BWRBRA'){BWRBRA = newChange;}
+            if(inputType == 'BWRBR'){BWRBR = newChange;}
+            if(inputType == 'VMF'){VMF = (newChange / 100);}   
+            if(inputType == 'M1'){M1 = newChange;} 
+            if(inputType == 'M2'){M2 = newChange;}   
+            if(inputType == 'MF'){MF = newChange;}
+        }
+        
+        function reCalc(newChange,inputType){                      
+            
+            setVars(newChange,inputType);
+            
+            //Calculate Total Burden
+            
+            var totalBurden = 
+                (((((
+                    (((
+                    BWRPRA*1.18)
+                    +((HWPD/WSCH)
+                    +((MIWPD/WSCH))
+                    +((HPWC/WSCH)
+                    +(TPDPC/CLW)/WSCH)
+                    +((A/CLW)/WSCH)
+                    +((RC/CLW)/WSCH))
+                    +((BB/WSCH))
+                    +(((CB*1.18)/CLW)/WSCH)))
+                    +(((RB*1.18)/CLW)/WSCH)
+                    +(M1/CLW/WSCH)
+                    +(M2/CLW/WSCH)
+                    +(MF/CLW/WSCH)                
+                ))))); 
+            
+            /*
+            var totalBurden = (             
+                (((((((
+                    (
+                    (BWRPRA*1.18)
+                    +((HWPD/WSCH)
+                    +((MIWPD/WSCH))
+                    +((HPWC/WSCH)
+                    +(TPDPC/CLW)/WSCH)
+                    +((A/CLW)/WSCH)
+                    +((RC/CLW)/WSCH))                                       
+                    +((BB/WSCH))
+                    +(((CB*1.18)/CLW)/WSCH)
+                    )                  
+                    +(((RB*1.18)/CLW)/WSCH)               
+                )))))))
+            );
+            */                               
+            document.getElementById("totalBurden").innerHTML = totalBurden.toFixed(2);
+            
+            //Calulate BWRBRA           
+            var BWRBRA = (BWRBR - (BWRBR*VMF));
+
+            //Calculate GPM
+            var GPMPercent = (      
+                ((BWRBRA - totalBurden) / BWRBRA)
+            * 100);         
+            
+            var GPMDiv = document.getElementById("GPM");
+                       
+            GPMDiv.innerHTML = GPMPercent.toFixed(2);
+            
+            var minGPM = {!GPM_Minimum};
+            
+            if(minGPM > GPMPercent || GPMPercent.toFixed(2) == 'NaN'){
+                GPMDiv.parentNode.setAttribute('class', 'red');
+            }
+            else{
+                GPMDiv.parentNode.setAttribute('class', 'green');
+            }  
+            
+            //Calculate Spread
+            document.getElementById("spread").innerHTML = (  
+                (WSCH * (BWRBRA - totalBurden))
+            ).toFixed(2);                        
+        }             
+    </script>
+    <style>
+        .totalValues{
+            font-weight:bold;
+            font-size:20px;
+        }
+        #totalsWrap{
+            width:250px;
+            position:absolute;
+            right:0px;
+        }
+        .red{
+            color:red;
+        }
+        .green{
+            color:green;
+        }
+    </style>
+    <div id="calcHolder">
+        <apex:form >
+            <apex:pageBlock title="Calculate GPM">             
+                <apex:pageBlockSection collapsible="false" title="Contract Details">
+                    <apex:inputField value="{!theRateCard.Contract_Length_Wks__c}" onkeyup="reCalc(this.value,'CLW')"/>
+                    <apex:pageblockSectionItem ></apex:pageblockSectionItem>
+                    <apex:inputField value="{!theRateCard.Weekly_Scheduled_Contracted_Hours__c}" onkeyup="reCalc(this.value,'WSCH')"/>
+                    <apex:inputField value="{!theRateCard.Base_Wage_Regular_Bill_Rate__c}" onkeyup="reCalc(this.value,'BWRBR')"/>
+                    <apex:inputField value="{!theRateCard.VMS_MSP_Fee__c}" onkeyup="reCalc(this.value,'VMF')"/>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection collapsible="false" title="Housing Package - Weekly Cost"> 
+                    <apex:inputField value="{!theRateCard.Housing_Package_Weekly_Cost__c}" onkeyup="reCalc(this.value,'HPWC')"/>
+                    <apex:inputField value="{!theRateCard.Housing_Weekly_Per_Diem__c}" onkeyup="reCalc(this.value,'HWPD')"/>
+                    <apex:inputField value="{!theRateCard.M_I_Weekly_Per_diem__c}" onkeyup="reCalc(this.value,'MIWPD')"/>
+                    <apex:inputField value="{!theRateCard.Travel_Per_Diem_Per_contract__c}" onkeyup="reCalc(this.value,'TPDPC')"/>
+                    <apex:inputField value="{!theRateCard.Airfare__c}" onkeyup="reCalc(this.value,'A')"/>
+                    <apex:inputField value="{!theRateCard.Rental_Car__c}" onkeyup="reCalc(this.value,'RC')"/>
+                    <apex:inputField value="{!theRateCard.Benefits_burden__c}" onkeyup="reCalc(this.value,'BB')"/>
+                    <apex:inputField value="{!theRateCard.Completion_Bonus__c}" onkeyup="reCalc(this.value,'CB')"/>
+                    <apex:inputField value="{!theRateCard.Referral_Bonus__c}" onkeyup="reCalc(this.value,'RB')"/>
+                    <apex:inputField value="{!theRateCard.Misc_1__c}" onkeyup="reCalc(this.value,'M1')"/>
+                    <apex:inputField value="{!theRateCard.Misc_2__c}" onkeyup="reCalc(this.value,'M2')"/>
+                    <apex:inputField value="{!theRateCard.Medical_Fees__c}" onkeyup="reCalc(this.value,'MF')"/>
+                    <apex:inputField value="{!theRateCard.Base_Wage_Regular_Pay_Rate_Actual__c}" onkeyup="reCalc(this.value,'BWRPRA')"/>          
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+            <div id="totalsWrap">
+                <div id="gpmMinWrap" class="totalValues">
+                        <div>Minimum GPM <span id="minGPM">{!GPM_Minimum}</span>%</div>
+                </div>
+                <div id="totalBurdenWrap" class="totalValues">
+                        <div>Total Burden: $<span id="totalBurden">0</span></div>
+                </div>
+                <div id="spreadWrap" class="totalValues">
+                        <div>Spread: $<span id="spread">0</span></div>
+                </div>
+                <div id="gpmWrap" class="totalValues">
+                        <div class="red">GPM: <span id="GPM">0</span>%</div>
+                </div>
+            </div>
+        </apex:form>
+    </div>
+</apex:page>

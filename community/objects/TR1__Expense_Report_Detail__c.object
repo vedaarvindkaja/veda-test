@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fieldSets>
+        <fullName>Per_Diem</fullName>
+        <description>Used in Expense report detail page to create and update ERD records</description>
+        <label>Per Diem</label>
+    </fieldSets>
+   <fields>
+        <fullName>Mileage_Rate__c</fullName>
+        <externalId>false</externalId>
+        <formula>TR1__Rate__r.TR1__TimeType__r.Mileage__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Mileage Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Expense Line Item</label>
+    <nameField>
+        <displayFormat>EXPD-{0000}</displayFormat>
+        <label>Expense Report Line Item</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Expense Line Items</pluralLabel>
+    <recordTypes>
+        <fullName>Per_Diem</fullName>
+        <active>true</active>
+        <label>Per Diem</label>
+    </recordTypes>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

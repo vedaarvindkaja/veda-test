@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <fullName>RC_My_Profile_Header</fullName>
+        <description>MyAccount_v1.page header</description>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>TR1__Birthdate__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>TR1__Candidate_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Email</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>MobilePhone</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>TR1__Date_Last_Worked__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>My Profile Header</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>RC_ViewCandidate</fullName>
+        <description>ViewCandidate.page</description>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FirstName</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>TR1__Contact_Notes__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Phone</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Email</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>ViewCandidate</label>
+    </fieldSets>
+    <fields>
+        <fullName>Birth_Day__c</fullName>
+        <externalId>false</externalId>
+        <label>Birth Day</label>
+        <picklist>
+            <picklistValues>
+                <fullName>01</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>02</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>03</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>04</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>05</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>06</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>07</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>08</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>09</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>10</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>13</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>14</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>18</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>20</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>21</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>22</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>23</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>24</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>25</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>26</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>27</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>28</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>29</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>30</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>31</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Birth_Month__c</fullName>
+        <externalId>false</externalId>
+        <label>Birth Month</label>
+        <picklist>
+            <picklistValues>
+                <fullName>01 - January</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>02 - February</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>03 - March</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>04 - April</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>05 - May</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>06 - June</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>07 - July</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>08 - August</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>09 - September</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>10 - October</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11 - November</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12 - December</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CareGiver_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Prophecy CareGiver Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Community_Contact_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF 
+( 
+(TEXT(TR1__Candidate_Status__c) == &apos;Perm Active&apos; || TEXT(TR1__Candidate_Status__c) == &apos;Perm Passive&apos; || TEXT(TR1__Candidate_Status__c) == &apos;Consult Hot&apos; || TEXT(TR1__Candidate_Status__c) == &apos;Consult Warm&apos; || TEXT(TR1__Candidate_Status__c) == &apos;Assigned&apos; || TEXT(TR1__Candidate_Status__c) == &apos;Placed&apos;), 
+
+IF( 
+(TEXT(TR1__Client_Status__c) == &apos;Not Applicable&apos; || TEXT(TR1__Client_Status__c) == &apos;Prospect&apos; || TEXT(TR1__Client_Status__c) == &apos;Past&apos; ), 
+&apos;Candidate&apos;, 
+
+IF( 
+(TEXT(TR1__Client_Status__c) == &apos;Active&apos;), 
+&apos;C and C&apos;, &apos;&apos;)), 
+IF( 
+(TEXT(TR1__Client_Status__c) == &apos;Active&apos; ), 
+&apos;Client&apos; , &apos;Candidate&apos; 
+) 
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Community Contact Type</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consol_URL__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK( CareGiver_Id__c ),&apos;&apos;, 
+&apos;https://tr-healthcare-demo.force.com/apex/GetCareGiverAuthURL?conId=&apos;+Id)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Prophecy Console URL</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF
+(
+(TEXT(TR1__Candidate_Status__c) == &apos;Prospect&apos; || 
+TEXT(TR1__Candidate_Status__c) == &apos;Perm Active&apos; || 
+TEXT(TR1__Candidate_Status__c) == &apos;Perm Passive&apos; || 
+TEXT(TR1__Candidate_Status__c) == &apos;Consult Hot&apos; || 
+TEXT(TR1__Candidate_Status__c) == &apos;Consult Warm&apos; || 
+TEXT(TR1__Candidate_Status__c) == &apos;Assigned&apos; || 
+TEXT(TR1__Candidate_Status__c) == &apos;Building Profile&apos; ||
+TEXT(TR1__Candidate_Status__c) == &apos;Complete Profile&apos; ||
+TEXT(TR1__Candidate_Status__c) == &apos;Lockdown Complete&apos; ||
+TEXT(TR1__Candidate_Status__c) == &apos;Placed&apos;),
+
+IF(
+(TEXT(TR1__Client_Status__c) == &apos;Not Applicable&apos;),
+IMAGE(&apos;/servlet/servlet.FileDownload?file=015280000006v2p&apos;, &apos;&apos;),
+
+IF(
+(TEXT(TR1__Client_Status__c) == &apos;Prospect&apos; || 
+TEXT(TR1__Client_Status__c) == &apos;Past&apos; || 
+TEXT(TR1__Client_Status__c) == &apos;Active&apos;),
+IMAGE(&apos;/servlet/servlet.FileDownload?file=015280000006v2f&apos;,&apos;&apos;), &apos;&apos;)),
+
+IF(
+(TEXT(TR1__Client_Status__c) == &apos;Prospect&apos; || 
+TEXT(TR1__Client_Status__c) == &apos;Past&apos; || 
+TEXT(TR1__Client_Status__c) == &apos;Active&apos; ),
+IMAGE(&apos;/servlet/servlet.FileDownload?file=015280000006v2a&apos;,&apos;&apos;) , &apos;&apos;
+)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Contact Type</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Holiday_Accrued__c</fullName>
+        <externalId>false</externalId>
+        <label>Holiday Accrued</label>
+        <summarizedField>TR1__Contact_Accrual__c.TR1__Hours_Accrued__c</summarizedField>
+        <summaryForeignKey>TR1__Contact_Accrual__c.TR1__Contact__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Languages__c</fullName>
+        <externalId>false</externalId>
+        <label>Languages</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Level__c</fullName>
+        <externalId>false</externalId>
+        <label>Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Secondary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tertiary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Primary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Middle_Initial__c</fullName>
+        <externalId>false</externalId>
+        <label>Middle Initial</label>
+        <length>1</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rating__c</fullName>
+        <description>Use for giving rating to Candidate</description>
+        <externalId>false</externalId>
+        <label>Rating</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Undergrad_Year__c</fullName>
+        <externalId>false</externalId>
+        <label>Undergrad Year</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+</CustomObject>

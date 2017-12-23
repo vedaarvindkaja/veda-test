@@ -1,0 +1,197 @@
+<apex:page standardStyleSheets="false" showHeader="false" sidebar="false" action="{!redirectUnAuthenticatedUser}" controller="RC_ContactController">
+
+
+<apex:composition template="RC_CommunityTemplate">
+    	
+ 		<apex:define name="body">
+ 			<style>
+ 				.errorMsg{
+ 					color:red;
+ 				}	
+ 				
+ 				.SelectEmail{
+ 					background-color: rgba(255,255,255,0.4);
+				    font-size: 12px;
+				    color: #666;
+				    border: solid 1px #cacaca;
+				    min-width: 100%;
+				    display: block;
+				    box-sizing: border-box;
+				    height: 40px;
+				    padding-left: 10px;
+				    padding-right: 10px;
+				    margin-bottom: 10px;
+ 				}
+ 							
+ 			</style>  
+ 			<script>
+ 				function formValidation()
+ 				{
+ 					document.getElementById('idNameError').style.display = 'none';
+ 					document.getElementById('idEmailError').style.display = 'none';
+ 					document.getElementById('idMsgError').style.display = 'none';
+ 					document.getElementById('idSuccess').style.display = 'none';
+ 					
+ 					if(document.getElementById('{!$component.contactForm.contactNameField}').value.trim() == '')
+ 					{
+ 						document.getElementById('idNameError').style.display = 'inline-block';
+ 						return false;
+ 					}
+ 					else if(document.getElementById('{!$component.contactForm.idEmail}').value == 'Select')
+ 					{
+ 						document.getElementById('idEmailError').style.display = 'inline-block';
+ 						return false;
+ 					}
+ 					else if(document.getElementById('{!$component.contactForm.contactMessageTextarea}').value.trim() == '')
+ 					{
+ 						document.getElementById('idMsgError').style.display = 'inline-block';
+ 						return false;
+ 					}
+ 						sendEmail();
+ 					return true;
+ 				}
+ 				
+ 				//To show the successfull message for sending email
+ 				function SuccessEmail()
+ 				{
+ 					document.getElementById('idSuccess').style.display = '';
+ 					document.getElementById('{!$component.contactForm.idEmail}').value = 'Select';
+ 					document.getElementById('{!$component.contactForm.contactMessageTextarea}').value = ''; 					
+ 				}
+ 				
+ 			</script>			
+ 			<apex:actionstatus id="processingImg">
+	       		 <apex:facet name="start">
+					<div id="preloader" style="background-color: #dcdcdc; opacity: 0.7;">
+					    <div id="status">
+					        <p class="center-text">
+					            Sending an Email...		 			            
+					        </p>
+					    </div>
+					</div>
+				</apex:facet>
+			</apex:actionstatus>
+ 			
+ 			
+ 			
+ 		    <div id="content" class="snap-content">
+		        <div class="header">
+		            <a href="#" class="header-logout"><i class="fa fa-sign-out"></i></a>
+		            <a href="/Home" class="header-logo"></a>
+		            <a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>
+		        </div>
+		                
+		        <!-- Content Heding -->
+		        <div class="maps-container">
+		            <!-- styleClass="responsive-image maps" -->
+		            <apex:iframe src="https://maps.google.com/?ie=UTF8&amp;ll=47.595131,-122.330414&amp;spn=0.006186,0.016512&amp;t=h&amp;z=17&amp;output=embed" scrolling="true" id="theIframe"  />
+		        </div>
+		        
+		        <div style="width: 50%;left: 22%;right: 22%;">					
+        			<div id="idSuccess" style="display:none; text-align:center;"><h2 style="color:#27ae60;">Your email has been sent successfully!</h2></div>
+				</div> 		
+        		<br/>
+		
+		        <div class="content">		
+		            <div class="one-half-responsive">
+		                <h4>Need assistance? Send us an email.</h4>
+		                <div class="container no-bottom">
+		                    <div class="contact-form no-bottom"> 
+		                        <div class="formSuccessMessageWrap" id="formSuccessMessageWrap">
+		                            <div class="big-notification green-notification">
+		                                <h3 class="uppercase">Message Sent </h3>
+		                                <a href="#" class="close-big-notification">x</a>
+		                                <p>Your message has been successfuly sent. Please allow up to 48 hours for a reply! Thank you!</p>
+		                            </div>
+		                        </div>
+		
+		                        <apex:form id="contactForm">
+		                        		<apex:actionFunction name="sendEmail" action="{!sendEmail}" rerender="contactForm" status="processingImg" onComplete="SuccessEmail();"/>
+		                        		
+		                                <div class="formFieldWrap">
+		                                    <label class="field-title contactNameField" for="contactNameField">Name:</label>
+		                                    <apex:inputText value="{!strName}" styleClass="contactField requiredField" id="contactNameField" />
+		                                    <span id="idNameError" style="display:none;margin-top: -11px;color: red;font-weight: bold;">Please enter a Name </span>
+		                                </div>
+		                                
+		                                <div class="formFieldWrap">
+		                                    <label class="field-title contactNameField" for="contactNameField">Subject:</label>
+		                                    <apex:inputText value="{!strSubject}" styleClass="contactField requiredField" id="contactSubjectField" disabled="true" />
+		                                </div>
+		                                
+		                                <div class="formFieldWrap">
+		                                    <label class="field-title contactEmailField" for="contactEmailField">Email:</label>
+		                                    <apex:selectList id="idEmail" value="{!strEmail}" multiselect="false" size="1" styleClass="SelectEmail">
+		                                    	<apex:selectOption itemValue="Select" itemLabel="------ Select ------"/>
+								                <apex:selectOption itemValue="abc@gmail.com" itemLabel="abc@gmail.com"/>
+								                <apex:selectOption itemValue="xyzhelp@yahoo.com" itemLabel="xyzhelp@yahoo.com"/>
+								                <apex:selectOption itemValue="prem.anand@trekbin.com" itemLabel="prem.anand@trekbin.com"/>
+								                <apex:selectOption itemValue="tr_recruitment_demo@mailinator.com" itemLabel="tr_recruitment_demo@mailinator.com"/>
+            								</apex:selectList>
+            								<span id="idEmailError" style="display:none;margin-top: -11px;color: red;font-weight: bold;">Please select an Email</span>
+		                                </div>
+		                                <div class="formTextareaWrap">
+		                                    <label class="field-title contactMessageTextarea" for="contactMessageTextarea">Message:</label>
+		                                    <apex:inputTextarea value="{!strDescription}" styleClass="contactTextarea" id="contactMessageTextarea" />
+		                                    <span id="idMsgError" style="display:none;margin-top: -23px;color: red;font-weight: bold;">Please enter the Message</span>
+		                                </div>
+		                                <div class="formSubmitButtonErrorsWrap">
+		                                		<input type="button" class="buttonWrap button button-green contactSubmitButton" value="SUBMIT" onClick="formValidation();"/>
+<!-- 		                                    <apex:commandbutton action="{!sendEmail}" styleClass="buttonWrap button button-green contactSubmitButton" value="SUBMIT" rerender="contactForm" status="processingImg" onClick="return formValidation();"/> -->
+		                                </div>
+		                        </apex:form>       
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="decoration hide-if-responsive"></div>
+		            <div class="one-half-responsive last-column">
+		                <div class="container no-bottom">
+		                    <h4>Call Us Today</h4>
+		                    <p>
+		                        <a href="#" class="contact-call"><i class="fa fa-phone"></i> (800) 706 1030</a>
+		                        <a href="#" class="contact-text"><i class="fa fa-fax"></i> (877) 590 6286</a>
+		
+		                    </p>
+		                    <h4>Our Locations</h4>
+		                    <p>
+		                        <strong>San Francisco</strong><br />
+		                        505 Sansome St., Suite 1020<br />
+		                        San Francisco, CA 94111 <br />
+		                    </p>
+		                    <p>
+		                        <strong>Redwood City</strong><br />
+		                        920 Main Street<br />
+		                        Redwood City, CA 94063
+		                    </p>
+		
+		                    <p>
+		                        <strong>San Diego</strong><br />
+		                        9605 Scrandon Rd, Suite 425<br />
+		                        San Diego, CA 92121
+		                    </p>
+		
+		                    <p>
+		                        <strong>Tampa</strong><br />
+		                        3030 N. Rocky Point Drive, Suite 180<br />
+		                        Tampa, FL 33607
+		                    </p>
+		                </div>            
+		            </div>
+		        </div>
+		
+		        <div class="decoration container"></div>  
+		            
+		        <!-- Page Footer-->
+		        <div class="footer">
+		            <div class="footer-socials half-bottom">
+		                <a href="#" class="footer-share show-share-bottom"><i class="fa fa-share-alt"></i></a>
+		                <a href="#" class="footer-up"><i class="fa fa-angle-up"></i></a>
+		            </div>
+		            <p class="center-text">&copy; 2015 Talent Rover. All rights reserved.</p>
+		        </div>       
+		    </div>
+ 		</apex:define> 
+ 		
+ 		
+ 	</apex:composition>
+</apex:page>

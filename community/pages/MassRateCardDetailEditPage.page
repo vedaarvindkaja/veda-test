@@ -1,0 +1,58 @@
+<apex:page standardController="Rate__c" extensions="MassRateCardDetailEditPageController" tabStyle="Rate__c" sidebar="true">
+    <style>
+        .Custom17Tab .tertiaryPalette, .individualPalette .Custom17Block .tertiaryPalette, .layoutEdit .individualPalette .Custom17Block .tertiaryPalette{
+            border-radius: 5px;
+        }
+    </style>
+    <apex:pageMessages />
+    <apex:form >
+        <apex:pageBlock title="Rate Card">
+            <apex:pageBlockSection title="{!rate.Name}" collapsible="false" id="mainRecord" columns="2" showHeader="false">
+                <apex:repeat value="{!rateCardfields}" var="rf">
+                    <apex:outputField value="{!rate[rf.fieldPath]}"/>
+                </apex:repeat>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:outputPanel id="rateCardDetailEmptyList" rendered="{!RateCardDetailsList.size==0}">
+            <apex:pageBlock title="Rate Card Details" >
+                <apex:pageBlockButtons >
+                    <apex:commandButton action="{!cancel}" value="Cancel" />
+                </apex:pageBlockButtons> 
+                This rate card doesn't have any rate card details.
+            </apex:pageBlock>                    
+        </apex:outputPanel>
+        <apex:outputPanel id="rateCardDetailList" rendered="{!AND(NOT(ISNULL(RateCardDetailsList)),RateCardDetailsList.size>0)}">
+            <apex:pageBlock title="Rate Card Details" >
+                <apex:pageBlockButtons >
+                    <apex:commandButton action="{!save}" value="Save" />
+                    <apex:commandButton action="{!cancel}" value="Cancel" />
+                </apex:pageBlockButtons>                
+                <apex:repeat value="{!RateCardDetailsList}" var="rcd">
+                    <apex:pageBlockSection columns="1" title="{!rcd.Name}" rendered="{!ISNULL(rcd.Block_of_Time__c)}" collapsible="true">
+                     <apex:pagemessage severity="info" rendered="{!rcd.Time_Type_Name_Hidden__c =='Base'}" >
+                      When Markup = Yes and there is a Markup Percentage , all fields in this Rate Card Detail will autocalculate based on the inputs (Regular Pay, OTmultiplier, DTmultiplier etc.)
+                   </apex:pagemessage>
+                        <apex:pageBlockSectionItem >
+                          <apex:pageBlockSection columns="2">
+                                <apex:repeat value="{!rateCardDetailfields}" var="rcdf">
+                                    <apex:inputField value="{!rcd[rcdf.fieldPath]}" required="{!rcdf.Required}" rendered="!{!rcd.Time_Type_Name_Hidden__c =='Base'}"/>
+                                    <apex:outputField value="{!rcd[rcdf.fieldPath]}" rendered="{!rcd.Time_Type_Name_Hidden__c =='Base'}"/>                                     
+                                </apex:repeat>
+                            </apex:pageBlockSection>
+                        </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+
+                    <apex:pageBlockSection columns="1" title="{!rcd.Name}" rendered="{!NOT(ISNULL(rcd.Block_of_Time__c))}" collapsible="true">
+                        <apex:pageBlockSectionItem >
+                            <apex:pageBlockSection columns="2">
+                                <apex:repeat value="{!rateCardDetailBOTfields}" var="rcdf">
+                                    <apex:inputField value="{!rcd[rcdf.fieldPath]}" required="{!rcdf.Required}"/>                                     
+                                </apex:repeat>
+                            </apex:pageBlockSection>
+                        </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+                </apex:repeat>
+            </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

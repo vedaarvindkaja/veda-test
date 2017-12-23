@@ -1,0 +1,393 @@
+<apex:page id="idMyPage" standardStyleSheets="false" showHeader="false" sidebar="false" action="{!redirectUnAuthenticatedUser}" controller="RC_ViewCandidate">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+       <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <apex:stylesheet value="{!URLFOR($Resource.SLDS092, 'assets/styles/salesforce-lightning-design-system-vf.css')}" /> 
+            <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+            <apex:includeScript value="{!URLFOR($Resource.TB_JS, '/jQuery-1.11.3.min.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.TB_JS, '/jquery-ui-1.11.3.js')}" />  
+            
+            <style>
+                
+                .jr-ratenode{
+	
+                }
+                
+                .jr-rating{
+                   float:left;
+                   margin: 6px 0;
+                   position: relative;
+                   display: block;
+                   color: red;
+                   width: 0px;
+                   height: 0px;
+                   border-right:  10px solid transparent;
+                   border-bottom: 7px  solid #CC6600;
+                   border-left:   10px solid transparent;
+                   -moz-transform:    rotate(35deg);
+                   -webkit-transform: rotate(35deg);
+                   -ms-transform:     rotate(35deg);
+                   -o-transform:      rotate(35deg);
+                }
+                .jr-rating:before{
+                   border-bottom: 8px solid #CC6600;
+                   border-left: 3px solid transparent;
+                   border-right: 3px solid transparent;
+                   position: absolute;
+                   height: 0px;
+                   width: 0px;
+                   top: -4.5px;
+                   left: -6.5px;
+                   display: block;
+                   content: '';
+                   -webkit-transform: rotate(-35deg);
+                   -moz-transform:    rotate(-35deg);
+                   -ms-transform:     rotate(-35deg);
+                   -o-transform:      rotate(-35deg);
+                }
+                .jr-rating:after{
+                	 position: absolute;
+                   display: block;
+                   color: red;
+                   top: 0.3px;
+                   left: -10.5px;
+                   width: 0px;
+                   height: 0px;
+                   border-right: 10px solid transparent;
+                   border-bottom: 7px solid #CC6600;
+                   border-left: 10px solid transparent;
+                   -webkit-transform: rotate(-70deg);
+                   -moz-transform:    rotate(-70deg);
+                   -ms-transform:     rotate(-70deg);
+                   -o-transform:      rotate(-70deg);
+                   content: '';
+                }
+                
+                .jr-nomal {
+                   float:left;
+                   margin: 6px 0;
+                   position: relative;
+                   display: block;
+                   color: red;
+                   width: 0px;
+                   height: 0px;
+                   border-right:  10px solid transparent;
+                   border-bottom: 7px  solid grey;
+                   border-left:   10px solid transparent;
+                   -moz-transform:    rotate(35deg);
+                   -webkit-transform: rotate(35deg);
+                   -ms-transform:     rotate(35deg);
+                   -o-transform:      rotate(35deg);
+                }
+                .jr-nomal:before {
+                   border-bottom: 8px solid grey;
+                   border-left: 3px solid transparent;
+                   border-right: 3px solid transparent;
+                   position: absolute;
+                   height: 0px;
+                   width: 0px;
+                   top: -4.5px;
+                   left: -6.5px;
+                   display: block;
+                   content: '';
+                   -webkit-transform: rotate(-35deg);
+                   -moz-transform:    rotate(-35deg);
+                   -ms-transform:     rotate(-35deg);
+                   -o-transform:      rotate(-35deg);
+                    
+                }
+                .jr-nomal:after {
+                   position: absolute;
+                   display: block;
+                   color: red;
+                   top: 0.3px;
+                   left: -10.5px;
+                   width: 0px;
+                   height: 0px;
+                   border-right: 10px solid transparent;
+                   border-bottom: 7px solid grey;
+                   border-left: 10px solid transparent;
+                   -webkit-transform: rotate(-70deg);
+                   -moz-transform:    rotate(-70deg);
+                   -ms-transform:     rotate(-70deg);
+                   -o-transform:      rotate(-70deg);
+                   content: '';
+                }
+                
+            </style>
+            
+            
+            <script>
+                $.fn.start = function(rating,cb) {
+                    console.log('---2---');
+                var length = $(this).children().length;
+                var children = $(this).children();
+                //current index ,0 base
+                var current = -1;
+            
+            
+                if(typeof(rating) === 'function'){
+                    cb = rating;
+                }else{
+                    if(rating <1 || rating > length){
+                        rating = -1;
+                    }
+                }
+                //init rating
+                current = rating - 1;
+                for (var j = 0; j <= current; j++) {
+                    $(children[j]).removeClass('jr-nomal jr-rating').addClass('jr-rating');
+                }
+                for (var i = 0; i < length; i++) {
+                    $(children[i]).bind('click', function(event) {
+                        current = $(this).index(children[i]);
+                        for (var j = 0; j <= current; j++) {
+                            $(children[j]).removeClass('jr-nomal jr-rating').addClass('jr-rating');
+                        }
+                        for (var j = current + 1; j < length; j++) {
+                            $(children[j]).removeClass('jr-nomal jr-rating').addClass('jr-nomal');
+                        }
+            
+                        if (typeof(cb) === 'function') {
+            
+                            cb(current + 1);
+                        }
+                    });
+                }
+            }
+            
+            $.fn.getCurrentRating = function(){
+                
+                var length = $(this).children().length;
+                var children = $(this).children();
+                var resulut = 0;
+            
+                for (var i = 0; i < length; i++) {
+                    if($(children[i]).hasClass('jr-rating')){
+                        resulut +=1;
+                    }else{
+                        break;
+                    }
+                }
+                return resulut;
+            }
+                
+            </script>
+            
+        
+            
+            
+            <script>
+                function closeBanner() 
+                {
+                   document.getElementById('messageBanner').style.display = 'none'; 
+                   document.getElementById('uploadMessageSuccessBanner').style.display = 'none'; 
+                }
+            </script>
+            <style>
+                .iframeBox{
+                    border: 1px solid gray;
+                    padding: 16px;
+                    text-align: center;
+                }
+                .errorMsg{
+                    color:red;
+                }
+               
+                #outPopUp{
+                 position:absolute;
+                 z-index:9999999;
+                 top:50%;
+                 left:47%;
+                }
+                
+                .closeButton{
+                    font-size: 18px;
+                    FONT-WEIGHT: 600;
+                }
+                
+                .msgStyle{
+                    color:white;
+                }
+                
+                .slds-table--bordered{
+                    border-left: 1px solid #d8dde6;
+                    border-right: 1px solid #d8dde6;
+                }
+                
+                .widthClass{
+                    min-width : 198px;
+                    text-align : center;
+                }
+                
+                .multiSelectPicklistTable td{
+                    width:45%;
+                }
+                
+                .multiSelectPicklistCell{
+                    width:10% !important;
+                    padding:3% !important;
+                }
+                
+                .multiSelectPicklistTable .slds-input{
+                    width: 100% !important;
+                }
+                .multiSelectPicklistCell img{
+                    border-left: 0px !important;
+                }
+                
+            </style>
+            
+       </head>
+    
+    <apex:composition template="RC_CommunityTemplate">
+        
+        <apex:define name="body">
+            
+            <div style="height:60px;">&nbsp;</div>
+            
+            <div class="slds-all-elements">
+                <div id="content" class="slds-snap-content" style="z-index:100">
+                    <div class="slds-content" style="min-height:500px;">   
+                        <apex:form id="idForm" styleClass="slds">
+                            
+                            <apex:actionFunction name="updateContactInfo" action="{!updateContactInfo}" reRender="idRating">
+                                <apex:param name="rating" value=""/>
+                            </apex:actionFunction>
+                            
+                            <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture" role="alert" id="messageBanner" style="display:{!IF(strMessage != '', '','none')}">
+                                <div class="slds-notify__close" id="idClose"  onClick="closeBanner();" style="cursor:pointer; display:{!IF(isSuccess, '','none')}"> 
+                                    <span class="closeButton">x</span> 
+                                </div> 
+                                <div class="notify__content slds-grid">                         
+                                    <apex:outputPanel styleClass="slds-col slds-align-middle" id="idMsg">
+                                         <h2 class="slds-text-heading--small msgStyle">  
+                                             <span>{!strMessage}</span>     
+                                         </h2>
+                                    </apex:outputPanel>
+                                </div>
+                            </div>
+                            
+                            <apex:outputPanel id="idFormPanel" layout="block" styleClass="" rendered="{!isPageLoad}">
+                                <apex:outputPanel id="idHeader" layout="block" styleClass="">
+                                    <!-- New Header -->
+                                        <div class="slds-page-header" role="banner">
+                                            <div class="slds-grid slds-wrap slds-grid--align-spread">
+                                                <div class="slds-col">
+                                                    <div class="slds-media">
+                                                        <div class="slds-media__figure">
+                                                            <span class="slds-avatar slds-avatar--medium">
+                                                                <img src="{!smallPhotoUrl}" alt="company name" />
+                                                            </span>
+                                                        </div>
+                                                        <div class="slds-media__body">
+                                                            <p class="slds-text-heading--label">Candidate Details</p>
+                                                            <div class="slds-grid">
+                                                                <h1 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle" title="My Profile">{!$User.FirstName} {!$User.LastName}</h1>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="slds-col slds-no-flex slds-align-bottom">
+                                                  <div class="slds-button-group" role="group">
+                                                    <apex:outputLink value="{!$Site.prefix}/ClientJobCandidates?jobId={!jobId}" styleClass="slds-button slds-button--neutral">Back</apex:outputLink>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              
+                                              <div class="slds-grid slds-wrap slds-grid--align-spread slds-page-header__detail-row">
+                                                <apex:repeat value="{!$ObjectType.Contact.Fieldsets.RC_My_Profile_Header}" var="field">
+                                                    <div class="slds-col--padded slds-size--2-of-6 slds-medium-size--2-of-6 slds-large-size--1-of-6">
+                                                      <dl>
+                                                        <dt>
+                                                          <p class="slds-text-heading--label slds-truncate" title="{!field.label}">{!field.label}</p>
+                                                        </dt>
+                                                        <dd>
+                                                          <p class="slds-text-body--regular slds-truncate" title="{!objContact[field]}">
+                                                              <apex:outputField value="{!objContact[field]}" /></p>
+                                                        </dd>
+                                                      </dl>
+                                                    </div>
+                                                </apex:repeat>
+                                              </div>
+                                            </div>
+                                    
+                                    <!-- End New Header -->
+                                    
+                                   
+                                </apex:outputPanel>
+                                
+                                <br/>
+                                
+                                <table align="center" style="width:120px">
+                                    <tr>
+                                        <td>
+                                            <div class="group2" style="cursor:pointer">
+                                        		<div class="jr-ratenode jr-nomal"></div>
+                                        		<div class="jr-ratenode jr-nomal "></div>
+                                        		<div class="jr-ratenode jr-nomal "></div>
+                                        		<div class="jr-ratenode jr-nomal "></div>
+                                        		<div class="jr-ratenode jr-nomal "></div>
+                                        	</div>
+                                        	<div>
+                                        		<input type="hidden" id="info2" value="0" />
+                                        	</div>
+                                    	</td>
+                                	</tr>
+                                </table>
+                               
+                                <apex:outputPanel id="idContactInfo" layout="block" styleClass="slds-m-top--medium">
+                                    
+                                    <div class="slds-grid slds-wrap slds-grid--align-spread">
+                                        
+                                        <apex:repeat value="{!$ObjectType.Contact.Fieldsets.RC_ViewCandidate}" var="field">
+                                            <div class="slds-col  slds-col--padded-large slds-size--1-of-1 slds-medium-size--3-of-6 slds-large-size--6-of-12">                                            
+                                                <label class="slds-form-element__static slds-m-top--medium" style="font-weight: bolder;" for="input{!field}">
+                                                {!field.label}  
+                                                </label>
+                                                <apex:outputPanel styleClass="slds-form-element__control" layout="block" style="border: 1px solid rgba(129, 129, 129, 0.19);">
+                                                    <span class="slds-form-element__static slds-m-left--small" >{!objContact[field]}</span>
+                                                </apex:outputPanel>  
+                                            </div>
+                                        </apex:repeat>
+                                    </div>
+                                </apex:outputPanel>
+                        </apex:outputPanel>
+                    </apex:form>
+                    </div>     
+                    <br/><br/>
+                    <!-- Page Footer--> 
+                    <span class="nonslds">
+                        <div class="footer">
+                            <div class="footer-socials half-bottom">
+                                <a href="#" class="footer-share show-share-bottom"><i class="fa fa-share-alt"></i></a>
+                                <a href="#" class="footer-up"><i class="fa fa-angle-up"></i></a>
+                            </div>
+                            <p class="center-text">&copy; 2015 Talent Rover. All rights reserved.</p>
+                        </div>   
+                    </span>
+                </div>
+            </div>
+            <apex:outputPanel id="idRating">
+                <script type="text/javascript">
+                	$('.group2').start('{!objContact.Rating__c}',function(cur){
+                	   $('#info2').val(cur);
+                	});
+                
+                	$(".group2").on('click',function(){
+                	   
+                		updateContactInfo($('.group2').getCurrentRating());
+                	}); 
+                	
+               
+                </script>
+                function SubmitRating(){
+                    updateContactInfo($('.group2').getCurrentRating());
+                }
+            </apex:outputPanel>
+            
+            
+        </apex:define> 
+    </apex:composition>
+  </html>    
+</apex:page>

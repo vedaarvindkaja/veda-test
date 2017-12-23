@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Defines Organization wide GPM Calculator Limits</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>GPM__c</fullName>
+        <description>Defines the minimum allowable GPM %</description>
+        <externalId>false</externalId>
+        <label>GPM %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <label>GPM Limits</label>
+    <visibility>Protected</visibility>
+</CustomObject>

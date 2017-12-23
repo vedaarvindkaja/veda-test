@@ -1,0 +1,73 @@
+<apex:page standardStyleSheets="false" showHeader="false" sidebar="false" action="{!redirectUnAuthenticatedUser}" controller="RC_MyAccount">
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+        	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material.min.css" />
+        	<apex:stylesheet value="{!URLFOR($Resource.RC_DatePicker, 'bootstrap-material-datetimepicker.css')}"/>
+        
+        	<link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css' />
+        	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />		
+        	<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" />
+        
+            
+        	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/material.min.js"></script>
+        	<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script> 
+        	<apex:includeScript value="{!URLFOR($Resource.RC_DatePicker, 'bootstrap-material-datetimepicker.js')}"/> 
+    		
+    		<style>
+    			body 
+    			{
+    				font-family: 'Roboto', sans-serif;
+    			}
+    			h2 
+    			{
+    				padding: 0 20px 10px 20px;
+    				font-size: 20px;
+    				font-weight: 400;
+    			}
+    			.form-control-wrapper 
+    			{
+    				margin: 10px 20px;
+    			}
+    			code 
+    			{
+    				padding: 10px;
+    				background: #eee!important;
+    				display: block;
+    				color: #000;
+    			}
+    			code > p 
+    			{
+    				font-weight: bold;
+    				color: #000;
+    				font-size: 1.5em;
+    			}
+    			@media(max-width: 300px)
+    			{
+    				.well { margin : 0}
+    			}
+		    </style>
+		    <body>
+        	    <div class="container well">
+        			<div class="row">
+        				<div class="col-md-6">
+        					<h2>Date Time Picker</h2>
+        				</div>
+        			</div>
+        			<div class="row">
+        				<div class="col-md-6">
+        					<div class="form-control-wrapper">
+        						<input type="text" id="date-format" class="form-control floating-label" placeholder="Begin Date Time" />
+        					</div>
+        				</div>
+        				<div class="col-md-6">
+        					<code>
+        						<p>Code</p>
+        						$('#date-format').bootstrapMaterialDatePicker({ format : 'dddd DD MMMM YYYY - HH:mm' });
+        					</code>
+        				</div>
+        			</div>
+              </div>
+	      </body>
+	      
+</apex:page>

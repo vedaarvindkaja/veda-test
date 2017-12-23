@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Above_40_Bill_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Above 40 Bill Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Above_40_Hrs__c</fullName>
+        <externalId>false</externalId>
+        <label>Above 40 Hrs</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Above_40_Pay_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Above 40 Pay Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Bill_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>Above_40_Bill_Rate__c * Above_40_Hrs__c + DT_Bill_Rate__c * DT_Hrs__c + OT_Bill_Rate__c * OT_Hrs__c  + Regular_Bill_Rate__c* Regular_Hrs__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Bill Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Bill_Rate_Card_Detail_Time_Type_Name_Hid__c</fullName>
+        <externalId>false</externalId>
+        <formula>Bill_Rate_Card_Detail__r.Time_Type__r.Name</formula>
+        <label>Bill Rate Card Detail Time Type Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Bill_Rate_Card_Detail__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Bill Rate Card Detail</label>
+        <referenceTo>Rate_Card_Detail__c</referenceTo>
+        <relationshipLabel>Shift Works (Bill Rate Card Detail)</relationshipLabel>
+        <relationshipName>Shift_Works</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Block_of_Time__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Block of Time</label>
+        <referenceTo>Block_of_Time__c</referenceTo>
+        <relationshipLabel>Shift Works</relationshipLabel>
+        <relationshipName>Shift_Works</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Base</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Call Back</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Charge</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Holiday</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Orientation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On Call</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lunch</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Client_Hidden__c</fullName>
+        <externalId>false</externalId>
+        <formula>Timesheet__r.TR1__Closing_Report__r.Client__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Client Hidden</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DT_Bill_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>DT Bill Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>DT_Hrs__c</fullName>
+        <externalId>false</externalId>
+        <label>DT Hrs</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DT_Pay_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>DT Pay Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Daily_Hrs__c</fullName>
+        <externalId>false</externalId>
+        <label>Daily Hrs</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATEVALUE( Start_Date_Time__c )</formula>
+        <label>Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Differential_Bill_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Differential Bill Amount</label>
+        <summarizedField>Shift_Work_Detail__c.Total_Bill_Amount__c</summarizedField>
+        <summaryForeignKey>Shift_Work_Detail__c.Shift_Work__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Differential_Pay_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Differential Pay Amount</label>
+        <summarizedField>Shift_Work_Detail__c.Total_Pay_Amount__c</summarizedField>
+        <summaryForeignKey>Shift_Work_Detail__c.Shift_Work__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>End_Date_Time_Entered__c</fullName>
+        <externalId>false</externalId>
+        <label>End Date Time Entered</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>End_Date_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>End Date Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Job_State_Hidden__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Timesheet__r.TR1__Job_Order__r.TR1__State_Area__c)</formula>
+        <label>Job State Hidden</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OT_Bill_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>OT Bill Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>OT_Hrs__c</fullName>
+        <externalId>false</externalId>
+        <label>OT Hrs</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OT_Pay_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>OT Pay Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Parent_Shift_Work_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Parent Shift Work Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Shift_Work__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Parent Shift Work</label>
+        <referenceTo>Shift_Work__c</referenceTo>
+        <relationshipLabel>Child Shift Works</relationshipLabel>
+        <relationshipName>Shift_Works</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Pay_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>Above_40_Pay_Rate__c* Above_40_Hrs__c + DT_Pay_Rate__c* DT_Hrs__c + OT_Pay_Rate__c* OT_Hrs__c + Regular_Pay_Rate__c* Regular_Hrs__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Pay Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Person_Placed__c</fullName>
+        <externalId>false</externalId>
+        <formula>Timesheet__r.TR1__Consultant_Name__c</formula>
+        <label>Person Placed</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Profile_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Timesheet__r.TR1__Closing_Report__r.Profile_Name__c)</formula>
+        <label>Profile Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rate_Card_Detail__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Pay Rate Card Detail</label>
+        <referenceTo>Rate_Card_Detail__c</referenceTo>
+        <relationshipLabel>Shift Works</relationshipLabel>
+        <relationshipName>Shift_Works_del</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Rate_Card_Hidden__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Timesheet__r.TR1__Closing_Report__r.Placement_Rate_Card__r.Id)
+/**CASESAFEID( Rate_Card_Detail__r.Rate_Card__c )**/</formula>
+        <label>Rate Card Hidden</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rate_Card_Time_Type_Name_Hidden__c</fullName>
+        <externalId>false</externalId>
+        <formula>Rate_Card_Detail__r.Time_Type__r.Name</formula>
+        <label>Pay Rate Card Detail Time Type Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rate_Card_Time_Type_OT_Exempt_Hidden__c</fullName>
+        <externalId>false</externalId>
+        <formula>Rate_Card_Detail__r.Time_Type__r.OT_Exempt__c</formula>
+        <label>Rate Card Time Type OT Exempt Hidden</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Reg_Hrs__c</fullName>
+        <externalId>false</externalId>
+        <label>Reg Hrs</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Regular_Bill_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Regular Bill Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Regular_Hrs__c</fullName>
+        <externalId>false</externalId>
+        <label>Regular Hrs</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Regular_Pay_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Regular Pay Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Rounding_Rule_from_Client__c</fullName>
+        <description>This is hidden field which will fetch Rounding Rule Value from Client</description>
+        <externalId>false</externalId>
+        <formula>TEXT(  Timesheet__r.TR1__Closing_Report__r.Client__r.Rounding_Rule__c  )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Rounding Rule</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Start_Date_Time_Entered__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date Time Entered</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Start_Date_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Time_Type__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Time Type</label>
+        <referenceTo>Time_Type__c</referenceTo>
+        <relationshipLabel>Shift Works</relationshipLabel>
+        <relationshipName>Shift_Works</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Timesheet_Detail__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Timesheet Detail</label>
+        <referenceTo>TR1__Timesheet_Detail__c</referenceTo>
+        <relationshipLabel>Shift Works (Timesheet Detail)</relationshipLabel>
+        <relationshipName>Shift_Works1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Timesheet_Week_Ending_date__c</fullName>
+        <externalId>false</externalId>
+        <formula>Timesheet__r.TR1__Week_Ending__c</formula>
+        <label>Timesheet Week Ending date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Timesheet__c</fullName>
+        <externalId>false</externalId>
+        <label>Timesheet</label>
+        <referenceTo>TR1__Timesheet__c</referenceTo>
+        <relationshipLabel>Shift Works (Timesheet)</relationshipLabel>
+        <relationshipName>Shift_Works1</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Total_Bill_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>Bill_Amount__c + Differential_Bill_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Bill Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Pay_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>Pay_Amount__c + Differential_Pay_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Pay Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Shift Work</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Date__c</columns>
+        <columns>Daily_Hrs__c</columns>
+        <columns>OT_Hrs__c</columns>
+        <columns>DT_Hrs__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>SW-{MM}{DD}{YY}-{0}</displayFormat>
+        <label>Shift Work Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Shift Works</pluralLabel>
+    <recordTypes>
+        <fullName>Child_Shift_Work</fullName>
+        <active>true</active>
+        <label>Child Shift Work</label>
+        <picklistValues>
+            <picklist>Category__c</picklist>
+            <values>
+                <fullName>Base</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call Back</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Holiday</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lunch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Orientation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Parent_Shift_Work</fullName>
+        <active>true</active>
+        <label>Parent Shift Work</label>
+        <picklistValues>
+            <picklist>Category__c</picklist>
+            <values>
+                <fullName>Base</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call Back</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Holiday</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lunch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Orientation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Populate_Parent_Shift_Work_On_Child_SW</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( RecordTypeId  == &apos;012110000000zHv&apos;,ISBLANK(Parent_Shift_Work__c))</errorConditionFormula>
+        <errorDisplayField>Parent_Shift_Work__c</errorDisplayField>
+        <errorMessage>Parent Shift Work Field should be populated on Child Shift Work</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Start_End_Time_difference_greater_than_2</fullName>
+        <active>true</active>
+        <errorConditionFormula>FLOOR(  End_Date_Time_Entered__c  -   Start_Date_Time_Entered__c  ) &gt;= 2</errorConditionFormula>
+        <errorMessage>Difference between Start Date &amp; End Date should not be more than 2 days</errorMessage>
+    </validationRules>
+</CustomObject>

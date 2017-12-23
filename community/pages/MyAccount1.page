@@ -1,0 +1,209 @@
+<apex:page standardStyleSheets="false" showHeader="false" sidebar="false" action="{!redirectUnAuthenticatedUser}" controller="RC_MyAccount">
+    <apex:composition template="RC_CommunityTemplate">
+        <apex:define name="body">            
+            <style>
+                .errorMsg{color:red;}
+                .contactTextarea {padding-left: 20px;  padding-right: 20px; padding-top: 9px; padding-bottom: 9px; font: 12px Arial;  color: #666666;  margin-bottom: 0;  height: 45px;}
+                 .custom-date-style {   background-color: red !important; }  
+                 .input{     } 
+                 .input-wide{width: 500px; } 
+                div.xdsoft_select > div{overflow:visible!important;}
+            </style> 
+            <script>
+                function checkError()
+                {
+                    //alert(document.getElementsByClassName('errorMsg').innerHTML);
+                    //$(document).scrollTo('.errorMsg');
+                    
+                    var jq=jQuery.noConflict();
+                    
+                    if(jq(document).find('.errorMsg').length > 0)
+                    {
+                        var container = jq('div'),
+                            scrollTo = jq('.errorMsg');
+                        
+                        document.getElementById('idSuccess').style.display = 'none';
+                        
+                        container.animate({
+                            scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
+                        });
+                    }
+                    else
+                    {
+                        var container = jq('div'),
+                            scrollTo = jq('#idSuccess');
+                        
+                        document.getElementById('idSuccess').style.display = '';
+                        
+                        
+                            container.animate({
+                                scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
+                            });
+                        
+                    }       
+                    
+                }
+            </script>
+            
+            <apex:actionstatus id="processingImg">
+                 <apex:facet name="start">
+                    <div id="preloader" style="background-color: #dcdcdc; opacity: 0.7;">
+                        <div id="status">
+                            <p class="center-text">
+                                Updating the contact...                             
+                            </p>
+                        </div>
+                    </div>
+                </apex:facet>
+            </apex:actionstatus>
+            
+            <div id="content" class="snap-content">
+                
+                <div class="header">
+                    <a href="#" class="header-logout"><i class="fa fa-sign-out"></i></a>
+                    <a href="/Home" class="header-logo"></a>
+                    <a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>
+                </div>                
+                <!-- Content Heading -->
+                <div class="content-heading" style="overflow: hidden;position: relative;">
+                    <h4>MY ACCOUNT</h4>
+                    <p>Manage your profile and personal details</p>
+                    <i class="fa fa-home"></i>
+                    <div class="overlay"></div>
+                    <apex:image url="{!URLFOR($Resource.RC_Resources, 'images/pictures/standardw.jpg')}" /> 
+                </div>
+             
+        <apex:form id="idForm">
+            <apex:actionFunction name="doSomething" action="{!saveContactInfo}" reRender="dummy"/>
+                <!-- Page Content-->
+                <div class="content">   
+                    <div class="one-half-responsive">
+                        <h2>My Profile</h2>
+                     <p>Your current details are listed below. Edit to keep current. You may also view/edit your resume, view/edit your references, and view or supply updated credentialing documentation.</p>
+                    </div>
+                    <div class="two-half-responsive last-column" align="center">
+                        <div class="dashboard-buttons">
+                            <p>
+                              <a href="#" class="button-main">My Resume</a>
+                              <a href="#" class="button-main">References</a>
+                              <a href="#" class="button-main">Credentials</a>
+                              <a href="/ChangeYourPassword" class="button-main" style="width:150px;">Change Password</a>
+                            </p>
+                        </div>
+                        <div class="decoration"></div>
+                    </div>
+        
+                </div>
+                
+                <div style="width: 50%;left: 22%;right: 22%;">                  
+                    <div id="idSuccess" style="display:none; text-align:center;"><h2 style="color:#27ae60;">Your profile updated successfully!</h2></div>
+                </div>              
+                
+                <br/>
+                
+               <div class="content">       
+                <div class="one-half-responsive"> 
+                    <input type="text" value="" id="datetimepicker" class="login-username"/> 
+                     <div class="formFieldWrap">
+                        First Name:
+                        <apex:inputText styleClass="login-username" value="{!objContact.FirstName}" disabled="true"/>
+                        <br/>
+                         
+                        Street Address:
+                        <apex:inputField style="" styleClass="contactTextarea" value="{!objContact.MailingStreet}" />
+                        <br />
+                         
+                        City:
+                        <apex:inputField styleClass="login-username" value="{!objContact.MailingCity}" />
+                        <br />
+                        
+                        State
+                        <apex:inputField styleClass="login-username" value="{!objContact.MailingState}" />
+                        <br />
+                                
+                        Postal Code:
+                        <apex:inputField styleClass="login-username" value="{!objContact.MailingPostalCode}" />
+                        <br/>
+                        
+                        Primary Phone:
+                        <apex:inputField styleClass="login-username" value="{!objContact.Phone}" />
+                        <br /><br />
+                    </div>
+                </div>
+                <div class="two-half-responsive last-column" align="center">
+                    <div align="left">
+                        <div class="formFieldWrap">
+                            Last Name:
+                            <apex:inputText styleClass="login-username" value="{!objContact.LastName}" disabled="true"/>
+                            <br />
+                            
+                            Work Street Address:
+                            <apex:inputField style="font: 13.3333px Arial; margin-bottom: 0; height: 45px;" styleClass="contactTextarea" value="{!objContact.OtherStreet}" />
+                            <br />
+                         
+                            Work City:
+                            <apex:inputField styleClass="login-username" value="{!objContact.OtherCity}" />
+                            <br />
+                        
+                            Work State:
+                            <apex:inputField styleClass="login-username" value="{!objContact.OtherState}" />
+                            <br />
+                                
+                            Work Postal Code:
+                            <apex:inputField styleClass="login-username" value="{!objContact.OtherPostalCode}" />
+                            <br/>
+                            
+                            Email Address:
+                            <apex:inputText styleClass="login-username" value="{!objContact.Email}" disabled="true"/>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <br/> 
+                <div style="width: 50%;left: 22%;right: 22%;"> 
+                    <apex:commandbutton styleClass="buttonWrap button button-green contactSubmitButton" value="SAVE PROFILE CHANGES" action="{!saveContactInfo}" rerender="idForm"  onComplete="checkError();" status="processingImg" />
+                </div>
+
+            <div class="decoration"></div>
+        </div>     
+        </apex:form>
+                <!-- Page Footer-->
+                <div class="footer">
+                    <div class="footer-socials half-bottom">
+                        <a href="#" class="footer-share show-share-bottom"><i class="fa fa-share-alt"></i></a>
+                        <a href="#" class="footer-up"><i class="fa fa-angle-up"></i></a>
+                    </div>
+                    <p class="center-text">&copy; 2015 Talent Rover. All rights reserved.</p>
+                </div>  
+            </div>
+                <script>
+                /*
+    window.onerror = function(errorMsg) {
+        $('#console').html($('#console').html()+'<br>'+errorMsg)
+    }*/
+     
+     var $jq = jQuery.noConflict();
+    $jq.datetimepicker.setLocale('en');
+    
+    $jq('#datetimepicker_format').datetimepicker({value:'2015/04/15 05:03', format: $jq("#datetimepicker_format_value").val()});
+    $jq("#datetimepicker_format_change").on("click", function(e){
+        $jq("#datetimepicker_format").data('xdsoft_datetimepicker').setOptions({format: $jq("#datetimepicker_format_value").val()});
+    });
+    $jq("#datetimepicker_format_locale").on("change", function(e){
+        $jq.datetimepicker.setLocale($jq(e.currentTarget).val());
+    });
+    
+    $jq('#datetimepicker').datetimepicker({
+    dayOfWeekStart : 1,
+    lang:'en',
+    disabledDates:['1986/01/08','1986/01/09','1986/01/10'],
+    startDate:  '1986/01/05'
+    });
+    $jq('#datetimepicker').datetimepicker({value:'2015/04/15 05:03',step:10}); 
+
+</script>
+        </apex:define> 
+        
+        
+    </apex:composition>
+</apex:page>

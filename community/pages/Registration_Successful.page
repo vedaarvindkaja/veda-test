@@ -1,0 +1,33 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" >
+
+    <apex:composition template="RC_CommunityTemplate">
+        
+        <!-- Actual body of the content for current page -->
+        <apex:define name="body">
+            <style>
+                .login-logo {
+                    width: 229px;
+                    height: 60px;
+                    background-size: 230px 70px;
+                    margin-left: 26px;
+                    margin-right: 26px;
+                    margin-bottom: 10px; 
+                }
+                
+            </style>
+               <div class="nonslds all-elements">             
+                <!-- Page Content-->
+                <div class="login-page bg1">
+                    <div class="login-page-overlay"></div>
+                    <div class="login-page-wrapper">
+                        <!--<a href="#" class="login-logo"></a>-->
+                       <center> <img src="{!URLFOR($Resource.Forrer_IMG)}"/></center>
+                        <p>
+                            Thank you!<a href="/MyAccount_v1">Click Here</a> to view your Forrer Community Account and complete your profile.
+                        </p>
+                    </div>            
+                </div>
+            </div>
+        </apex:define> 
+    </apex:composition>
+</apex:page>
