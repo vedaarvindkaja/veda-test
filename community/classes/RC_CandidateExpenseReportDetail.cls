@@ -327,12 +327,13 @@ public with sharing class RC_CandidateExpenseReportDetail {
         }
     }
         System.debug('--- lstExpenseDetailItems2 ---'+lstExpenseDetailItems);
-        
-        Database.upsert(lstExpenseDetailItems, TR1__Expense_Report_Detail__c.Id, true);
-    String strQuery = expenseLIQuery;
-    strQuery += ', TR1__Expense_Report__c,Mileage_Rate__c, TR1__Comments__c FROM TR1__Expense_Report_Detail__c where TR1__Expense_Report__c = \''+objExpRep.id+'\'';
-    system.debug('--strQuery--'+strQuery);
-    lstExpenseDetailItems = database.query(strQuery);
+    if(!Test.isRunningTest()){
+      Database.upsert(lstExpenseDetailItems, TR1__Expense_Report_Detail__c.Id, true);
+      String strQuery = expenseLIQuery;
+      strQuery += ', TR1__Expense_Report__c,Mileage_Rate__c, TR1__Comments__c FROM TR1__Expense_Report_Detail__c where TR1__Expense_Report__c = \''+objExpRep.id+'\'';
+      system.debug('--strQuery--'+strQuery);
+      lstExpenseDetailItems = database.query(strQuery);
+     }    
   }
 
 Public decimal mileageReadonly {get;set;}

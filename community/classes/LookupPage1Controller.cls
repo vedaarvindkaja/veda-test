@@ -55,12 +55,12 @@ public with sharing class LookupPage1Controller {
     public List<TR1__Rate__c> returnRate(String searchKey){
         List<TR1__Rate__c> rateList = new List<TR1__Rate__c>();
         
-        String expRecordTypeName ='Lodging';
+        //String expRecordTypeName ='Lodging';
         System.debug('expTypeId>>'+expTypeId);
         System.debug('contId>>'+contId);
         System.debug('crId>>'+crId);
-        if(expTypeId != '')
-         expRecordTypeName = Schema.SObjectType.TR1__Expense_Report_Detail__c.getRecordTypeInfosById().get(expTypeId).getName();
+        /*if(expTypeId != '')
+         expRecordTypeName = Schema.SObjectType.TR1__Expense_Report_Detail__c.getRecordTypeInfosById().get(expTypeId).getName();*/
          /* for(TR1__Closing_Report__c cr : [Select Id, (Select Id, Name, TR1__Rate_Type_Name__c 
                                                             From TR1__Rates__r Where TR1__Active__c = true and
                                                             TR1__TimeType__r.Show_in_Community__c = true And Name like :+searchKey+'%' 
